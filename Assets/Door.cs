@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
 public class Door : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Door : MonoBehaviour
 
     void OnMouseDown()
     {
+        Debug.Log("clicked on door");
         if (myLock.locked == true) // If the door is closed...
         {
             
