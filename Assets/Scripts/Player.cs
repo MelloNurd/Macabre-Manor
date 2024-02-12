@@ -32,6 +32,12 @@ public class Player : MonoBehaviour
                 // Also prints result to screen
                 Debug.Log(obj.GetComponent<Lock>()?.Unlock(inventory.GetInventory()));
             }
+            else if (obj.tag == "Openable") {
+                // Calls the Unlock function on the Lock script of the aimed at object
+                // Note the "?". This makes it so it will only run if the Lock script is not null (meaning it has the script)
+                // Also prints result to screen
+                obj.GetComponent<Openable>()?.OpenClose();
+            }
         }
     }
 

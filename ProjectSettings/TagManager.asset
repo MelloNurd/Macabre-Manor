@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Holdable
   - Lock
+  - Openable
   layers:
   - Default
   - TransparentFX

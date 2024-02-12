@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.278
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.05011882, g: 0.062748425, b: 0.08532444, a: 0.278}
+  m_IndirectSpecularColor: {r: 0.050118893, g: 0.06274852, b: 0.085324556, a: 0.278}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -224,7 +224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: {fileID: 1811582300}
-  locked: 1
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &85910764
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -519,8 +521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 330585545}
-  walkSpeed: 6
-  runSpeed: 10
+  walkSpeed: 4
+  runSpeed: 8
   lookSpeed: 2
   lookXLimit: 85
   canMove: 1
@@ -658,6 +660,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2642311626253688300, guid: ba93fc15ee14dbf45b36696cb946115f,
         type: 3}
+      propertyPath: m_TagString
+      value: Openable
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642311626253688300, guid: ba93fc15ee14dbf45b36696cb946115f,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -666,7 +673,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2642311626253688301, guid: ba93fc15ee14dbf45b36696cb946115f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -698,7 +706,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: {fileID: 1342692122}
-  locked: 1
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1855021676}
+        m_TargetAssemblyTypeName: Openable, Assembly-CSharp
+        m_MethodName: Unlock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &309512456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2642311626253648332, guid: ba93fc15ee14dbf45b36696cb946115f,
@@ -2123,7 +2145,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.4590994, y: 2.6975005, z: 1}
   m_Center: {x: -0.59073514, y: 0.0872339, z: 0}
@@ -2136,11 +2158,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1855021672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f47cdb2c24a871e4bb165188fbbdf9ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 91b04fb20f408324294bab0af0350b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   open: 0
   child: {fileID: 0}
+  openAnimation: {fileID: 7400000, guid: 7e12aa6a68c1b654f980d954cb199995, type: 2}
+  closeAnimation: {fileID: 7400000, guid: 3b90b436f42f5a54c927493780878d24, type: 2}
 --- !u!1 &1866116142
 GameObject:
   m_ObjectHideFlags: 0

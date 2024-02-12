@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Lock : MonoBehaviour
 {
     public GameObject key;
 
-    public bool locked = true;
+    public UnityEvent onUnlock;
 
     public void Start() {
         // If the GameObject of this script does not have the "Lock" tag, set the tag to "Lock"
@@ -23,8 +24,8 @@ public class Lock : MonoBehaviour
     public bool Unlock(List<GameObject> items, bool removeItemFromInv = true) {
         foreach (GameObject item in items) { // Goes through List of GameObjects (inventory)
             if(item == key) { // If the current item is this Lock's key
-                locked = false;
                 if(removeItemFromInv) items.Remove(item); // Removes the key from the list assuming the parameter is true (true by default)
+                onUnlock.Invoke();
                 return true;
             }
         }
