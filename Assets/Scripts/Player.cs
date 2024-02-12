@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
     public float lookRange = 2f;
 
+    GameObject lookedAtObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,22 +23,28 @@ public class Player : MonoBehaviour
     void Update()
     {
         GameObject obj = ObjectAimedAt();
-        if (Interact() && obj != null) { // if player interacted, and they are aiming at something (obj)... note that this uses the lookRange
-            if (obj.tag == "Holdable")
+        if(lookedAtObj != obj) { // Outline handling
+            lookedAtObj?.GetComponent<Outline>()?.Disable();
+            obj?.GetComponent<Outline>()?.Enable();
+            lookedAtObj = obj;
+        }
+
+        if (Interact() && lookedAtObj != null) { // if player interacted, and they are aiming at something (obj)... note that this uses the lookRange
+            if (lookedAtObj.tag == "Holdable")
             {
-                Debug.Log(inventory.AddToInventory(obj)); // Adds object to inventory (and prints result to screen)
+                Debug.Log(inventory.AddToInventory(lookedAtObj)); // Adds object to inventory (and prints result to screen)
             }
-            else if (obj.tag == "Lock") {
+            else if (lookedAtObj.tag == "Lock") {
                 // Calls the Unlock function on the Lock script of the aimed at object
                 // Note the "?". This makes it so it will only run if the Lock script is not null (meaning it has the script)
                 // Also prints result to screen
-                Debug.Log(obj.GetComponent<Lock>()?.Unlock(inventory.GetInventory()));
+                Debug.Log(lookedAtObj.GetComponent<Lock>()?.Unlock(inventory.GetInventory()));
             }
-            else if (obj.tag == "Openable") {
+            else if (lookedAtObj.tag == "Openable") {
                 // Calls the Unlock function on the Lock script of the aimed at object
                 // Note the "?". This makes it so it will only run if the Lock script is not null (meaning it has the script)
                 // Also prints result to screen
-                obj.GetComponent<Openable>()?.OpenClose();
+                lookedAtObj.GetComponent<Openable>()?.OpenClose();
             }
         }
     }

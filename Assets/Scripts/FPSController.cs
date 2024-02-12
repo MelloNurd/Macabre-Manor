@@ -12,7 +12,7 @@ public class FPSController : MonoBehaviour
     public float walkSpeed = 4f;
     public float runSpeed = 8f;
 
-    public float lookSpeed = 2f;
+    public float lookSpeed = 2.25f;
 
     public float lookXLimit = 89f;
 
