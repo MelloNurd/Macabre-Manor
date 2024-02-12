@@ -28,11 +28,6 @@ public class Player : MonoBehaviour
                     Debug.Log(inventory.AddToInventory(obj));
                 }
                 else if (obj.tag == "Lock") {
-                    Lock lockObj = obj.GetComponent<Lock>();
-                    if(lockObj == null) {
-                        Debug.LogError("Object with \"Lock\" tag does not contain Lock script!");
-                        return;
-                    }
                     Debug.Log(obj.GetComponent<Lock>().Unlock(inventory.GetInventory()));
                 }
             }

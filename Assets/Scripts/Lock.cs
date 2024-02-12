@@ -9,6 +9,10 @@ public class Lock : MonoBehaviour
 
     public bool locked = true;
 
+    public void Start() {
+        if (gameObject.tag != "Lock") gameObject.tag = "Lock";
+    }
+
     public bool Unlock(List<GameObject> items, bool removeItemFromInv = true) {
         foreach (GameObject item in items) {
             if(item == key) {
