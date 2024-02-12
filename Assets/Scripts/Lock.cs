@@ -9,10 +9,11 @@ public class Lock : MonoBehaviour
 
     public bool locked = true;
 
-    public bool Unlock(List<GameObject> items) {
+    public bool Unlock(List<GameObject> items, bool removeItemFromInv = true) {
         foreach (GameObject item in items) {
             if(item == key) {
                 locked = false;
+                if(removeItemFromInv) items.Remove(item);
                 return true;
             }
         }
