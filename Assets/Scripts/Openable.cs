@@ -7,37 +7,37 @@ using UnityEngine.Experimental.Rendering;
 public class Openable : MonoBehaviour
 {
     Animator animator;
-    Lock myLock;
     public bool open = false;
-    public GameObject child;
 
     public AnimationClip openAnimation, closeAnimation;
 
     private bool isLocked = true;
     private bool isMoving = false;
-    private bool canClose = true;
+
+    public bool canClose = true;
+    public bool openOnUnlock = true;
 
     void Start()
     {
-        child = this.transform.GetChild(0).gameObject;
+        //child = this.transform.GetChild(0).gameObject;
         animator = this.transform.GetComponent<Animator>();
-        myLock = child.GetComponent<Lock>();
     }
 
     public void Unlock() {
         isLocked = false;
+        gameObject.tag = "Openable";
+        if (openOnUnlock) OpenClose();
     }
 
     public void OpenClose() {
         if (!isMoving && !isLocked) {
             if (open == false) {
                 open = true;
-                Debug.Log("open");
                 animator.Play(openAnimation.name);
                 isMoving = true;
                 StartCoroutine(AnimationEnd(openAnimation.length));
             }
-            else {
+            else if(canClose) {
                 open = false;
                 animator.Play(closeAnimation.name);
                 isMoving = true;
