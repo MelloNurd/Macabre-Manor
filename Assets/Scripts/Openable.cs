@@ -11,7 +11,7 @@ public class Openable : MonoBehaviour
 
     public AnimationClip openAnimation, closeAnimation;
 
-    private bool isLocked = true;
+    public bool isLocked = true;
     private bool isMoving = false;
 
     public bool canClose = true;
