@@ -41,7 +41,7 @@ public class FPSController : MonoBehaviour
         float curSpeedX = canMove ? Input.GetAxisRaw("Vertical") : 0;
         float curSpeedY = canMove ? Input.GetAxisRaw("Horizontal") : 0;
 
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        moveDirection = (forward * curSpeedX) + (right * curSpeedY) + new Vector3(0,-1,0);
 
         controller.Move(moveDirection.normalized * Time.deltaTime * (isRunning ? runSpeed : walkSpeed));
 

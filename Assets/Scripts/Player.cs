@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,13 +11,17 @@ public class Player : MonoBehaviour
 
     public float lookRange = 2f;
 
-    GameObject lookedAtObj;
+    public GameObject lookedAtObj;
+
+    [SerializeField] Material highlightMat;
 
     // Start is called before the first frame update
     void Start()
     {
         inventory = GetComponent<Inventory>(); // Gets player's inventory
         controller = GetComponent<FPSController>(); // Gets player's FPS controller
+
+        lookedAtObj = null;
     }
 
     // Update is called once per frame
@@ -24,8 +29,9 @@ public class Player : MonoBehaviour
     {
         GameObject obj = ObjectAimedAt();
         if(lookedAtObj != obj) { // Outline handling
-            lookedAtObj?.GetComponent<Outline>()?.Disable();
-            obj?.GetComponent<Outline>()?.Enable();
+
+            if(obj != null && (obj.tag == "Lock" || obj.tag == "Openable" || obj.tag == "Holdable")) AddHighlightMaterial(obj);
+            RemoveHighlightMaterial(lookedAtObj);
             lookedAtObj = obj;
         }
 
@@ -68,8 +74,24 @@ public class Player : MonoBehaviour
         // The RaycastHit object is returned from the Raycast, and the GameObject of the hit is returned.
         if (Physics.Raycast(controller.playerCam.transform.position, controller.playerCam.transform.forward, out var hit, lookRange))
         {
+            Debug.DrawRay(controller.playerCam.transform.position, hit.point);
             return hit.collider.gameObject;
         }
         return null;
+    }
+
+    private void AddHighlightMaterial(GameObject obj) {
+        MeshRenderer renderer = obj?.GetComponent<MeshRenderer>();
+        if (!renderer) return;
+        var materials = renderer.sharedMaterials.ToList();
+        if (!materials.Contains(highlightMat)) materials.Add(highlightMat);
+        renderer.materials = materials.ToArray();
+    }
+    private void RemoveHighlightMaterial(GameObject obj) {
+        MeshRenderer renderer = obj?.GetComponent<MeshRenderer>();
+        if (!renderer) return;
+        var materials = renderer.sharedMaterials.ToList();
+        if(materials.Contains(highlightMat)) materials.Remove(highlightMat);
+        renderer.materials = materials.ToArray();
     }
 }
