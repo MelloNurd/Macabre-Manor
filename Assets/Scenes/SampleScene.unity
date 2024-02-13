@@ -818,7 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87fba759fae1d34b8a1d24f954936d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: {fileID: 1364651728}
+  keys:
+  - {fileID: 1364651728}
   onUnlock:
     m_PersistentCalls:
       m_Calls:
@@ -1351,7 +1352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87fba759fae1d34b8a1d24f954936d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: {fileID: 404681811}
+  keys:
+  - {fileID: 404681811}
   onUnlock:
     m_PersistentCalls:
       m_Calls:
@@ -3494,7 +3496,7 @@ PrefabInstance:
     - target: {fileID: 1453311592774380472, guid: f101a2b4504c3d04a95511ba8b3543e3,
         type: 3}
       propertyPath: m_Name
-      value: Lock
+      value: Lock model
       objectReference: {fileID: 0}
     - target: {fileID: 2261057276556505346, guid: f101a2b4504c3d04a95511ba8b3543e3,
         type: 3}

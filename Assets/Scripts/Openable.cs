@@ -24,6 +24,7 @@ public class Openable : MonoBehaviour
     }
 
     public void Unlock() {
+        Debug.Log("test");
         isLocked = false;
         gameObject.tag = "Openable";
         if (openOnUnlock) OpenClose();
