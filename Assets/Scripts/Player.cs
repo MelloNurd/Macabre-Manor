@@ -8,10 +8,12 @@ public class Player : MonoBehaviour
 {
     FPSController controller;
     Inventory inventory;
+   
 
     public float lookRange = 2f;
 
     public GameObject lookedAtObj;
+    private GameObject hintText;
 
     [SerializeField] Material highlightMat;
 
@@ -51,6 +53,14 @@ public class Player : MonoBehaviour
                 // Note the "?". This makes it so it will only run if the Lock script is not null (meaning it has the script)
                 // Also prints result to screen
                 lookedAtObj.GetComponent<Openable>()?.OpenClose();
+            }
+            else if (lookedAtObj.tag == "Hint")
+            {
+                hintText = lookedAtObj.transform.GetChild(0).gameObject;
+                Debug.Log("Hint clicked");
+                hintText.SetActive(true);
+                Debug.Log(hintText.name + " activated");
+                StartCoroutine(HintWait(3.0f));
             }
         }
     }
@@ -93,5 +103,12 @@ public class Player : MonoBehaviour
         var materials = renderer.sharedMaterials.ToList();
         if(materials.Contains(highlightMat)) materials.Remove(highlightMat);
         renderer.materials = materials.ToArray();
+    }
+
+    IEnumerator HintWait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        hintText.SetActive(false);
+        Debug.Log(hintText.name + " deactivated");
     }
 }
