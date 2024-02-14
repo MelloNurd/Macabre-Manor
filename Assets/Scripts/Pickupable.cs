@@ -8,13 +8,13 @@ public class Pickupable : MonoBehaviour
 
     public bool isPickedUp;
 
-    private Renderer renderer;
+    private MeshRenderer meshRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>();
-        renderer = GetComponent<Renderer>();
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     public void Pickup() {
@@ -22,9 +22,9 @@ public class Pickupable : MonoBehaviour
             player.heldObject = gameObject;
             player.CopyHeldItemToHand();
             isPickedUp = true;
-            renderer.enabled = false;
-            foreach (Renderer renderer in gameObject.GetComponentsInChildren(typeof(Renderer))) { // Could be laggy
-                renderer.enabled = false;
+            meshRenderer.enabled = false;
+            foreach (MeshRenderer childRenderer in gameObject.GetComponentsInChildren(typeof(MeshRenderer))) { // Could be laggy
+                childRenderer.enabled = false;
             }
         }
         else if (player.heldObject == gameObject) {
@@ -32,9 +32,9 @@ public class Pickupable : MonoBehaviour
             player.ClearHand();
             isPickedUp = false;
 
-            renderer.enabled = true;
-            foreach (Renderer renderer in gameObject.GetComponentsInChildren(typeof(Renderer))) { // Could be laggy
-                renderer.enabled = true;
+            meshRenderer.enabled = true;
+            foreach (MeshRenderer childRenderer in gameObject.GetComponentsInChildren(typeof(MeshRenderer))) { // Could be laggy
+                childRenderer.enabled = true;
             }
         }
     }

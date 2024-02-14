@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering;
 
 public class Openable : MonoBehaviour
@@ -13,7 +14,10 @@ public class Openable : MonoBehaviour
 
     public AnimationClip openAnimation, closeAnimation;
 
-    private bool isMoving = false;
+    private bool isPlaying = false;
+
+    [Space(10)]
+    public UnityEvent onOpenFinish, onCloseFinish;
 
     void Start()
     {
@@ -21,7 +25,7 @@ public class Openable : MonoBehaviour
     }
 
     public void ToggleOpen() {
-        if (!isMoving) {
+        if (!isPlaying) {
             if (isOpen) Close();
             else Open();
         }
@@ -30,15 +34,15 @@ public class Openable : MonoBehaviour
     public void Open() {
         isOpen = true;
         animator.Play(openAnimation.name);
-        isMoving = true;
-        StartCoroutine(AnimationEnd(openAnimation.length));
+        isPlaying = true;
+        StartCoroutine(AnimationEnd(openAnimation.length, true));
     }
 
     public void Close() {
         isOpen = false;
         animator.Play(closeAnimation.name);
-        isMoving = true;
-        StartCoroutine(AnimationEnd(closeAnimation.length));
+        isPlaying = true;
+        StartCoroutine(AnimationEnd(closeAnimation.length, false));
     }
 
     public void SlamClose() {
@@ -51,9 +55,11 @@ public class Openable : MonoBehaviour
         Open();
     }
 
-    IEnumerator AnimationEnd(float time) {
+    IEnumerator AnimationEnd(float time, bool isClosing) {
         yield return new WaitForSeconds(time);
+        if (isClosing) onCloseFinish?.Invoke();
+        else onOpenFinish?.Invoke();
         animator.speed = 1f;
-        isMoving = false;
+        isPlaying = false;
     }
 }

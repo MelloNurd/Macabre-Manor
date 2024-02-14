@@ -41,40 +41,22 @@ public class Player : MonoBehaviour
         }
         else crosshair.sprite = basicCrosshair;
 
-        // 6 = "Pickupable"
-        // 7 = "Interactable"
-
         if (Interact()) { // if player interacted, and they are aiming at something (obj)... note that this uses the lookRange
 
             if (obj != null && obj.TryGetComponent(out Interactable component2)) {
-                component2.OnInteract();
+                component2.Interact();
             }
-
-            //if (obj.tag == "Holdable")
-            //{
-            //    Debug.Log(inventory.AddToInventory(obj)); // Adds object to inventory (and prints result to screen)
-            //}
-            //else if (obj.tag == "Lock") {
-            //    // Calls the Unlock function on the Lock script of the aimed at object
-            //    // Note the "?". This makes it so it will only run if the Lock script is not null (meaning it has the script)
-            //    // Also prints result to screen
-            //    Debug.Log(obj.GetComponent<Lock>()?.Unlock(inventory.GetInventory()));
-            //}
-            //else if (obj.tag == "Openable") {
-            //    // Calls the Unlock function on the Lock script of the aimed at object
-            //    // Note the "?". This makes it so it will only run if the Lock script is not null (meaning it has the script)
-            //    // Also prints result to screen
-            //    obj.GetComponent<Openable>()?.OpenClose();
-            //}
-            //else if (obj.tag == "Hint")
-            //{
-            //    hintText = obj.transform.GetChild(0).gameObject;
-            //    Debug.Log("Hint clicked");
-            //    hintText.SetActive(true);
-            //    Debug.Log(hintText.name + " activated");
-            //    StartCoroutine(HintWait(3.0f));
-            //}
         }
+    }
+
+    public void DisableMove()
+    {
+        controller.canMove = false;
+    }
+
+    public void EnableMove()
+    {
+        controller.canMove = true;
     }
 
     public void CopyHeldItemToHand() {
@@ -92,7 +74,7 @@ public class Player : MonoBehaviour
     /// Function which is used to test if user has pressed their interaction buttons/keys
     /// </summary>
     /// <returns>True or false, if any of the inputs in the function return true.</returns>
-    private bool Interact() { 
+    public bool Interact() { 
         // MouseButton 0 is left click
         return (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)); 
     }

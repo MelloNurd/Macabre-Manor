@@ -34,17 +34,19 @@ public class FPSController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Player Movement
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? Input.GetAxisRaw("Vertical") : 0;
-        float curSpeedY = canMove ? Input.GetAxisRaw("Horizontal") : 0;
+        float curSpeedX = Input.GetAxisRaw("Vertical");
+        float curSpeedY = Input.GetAxisRaw("Horizontal");
 
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY) + new Vector3(0,-1,0);
+        moveDirection = canMove ? (forward * curSpeedX) + (right * curSpeedY) + Vector3.down : Vector3.down;
 
         controller.Move(moveDirection.normalized * Time.deltaTime * (isRunning ? runSpeed : walkSpeed));
 
+        // Camera Movement
         if(canMove) {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);

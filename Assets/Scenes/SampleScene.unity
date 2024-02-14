@@ -756,6 +756,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 649625956}
   - {fileID: 837712758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2310,6 +2311,12 @@ MonoBehaviour:
   isOpen: 0
   openAnimation: {fileID: 7400000, guid: 7e12aa6a68c1b654f980d954cb199995, type: 2}
   closeAnimation: {fileID: 7400000, guid: 3b90b436f42f5a54c927493780878d24, type: 2}
+  onOpenFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  onCloseFinish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &309512465
 Animator:
   serializedVersion: 5
@@ -3889,10 +3896,11 @@ GameObject:
   - component: {fileID: 649625956}
   - component: {fileID: 649625958}
   - component: {fileID: 649625957}
+  - component: {fileID: 649625961}
   - component: {fileID: 649625959}
   - component: {fileID: 649625960}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Mug Hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3905,13 +3913,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649625955}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 900974163}
-  m_Father: {fileID: 837712758}
+  m_Father: {fileID: 46573623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4016,6 +4024,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 376.2405, y: 869.2253, z: 196.38513}
   m_Center: {x: 40.706833, y: 61.412994, z: -0.48442078}
+--- !u!114 &649625961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649625955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974be8ec1648e6c458594aa624195147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onShowFail:
+    m_PersistentCalls:
+      m_Calls: []
+  onShow:
+    m_PersistentCalls:
+      m_Calls: []
+  onHide:
+    m_PersistentCalls:
+      m_Calls: []
+  isShown: 0
 --- !u!1001 &662266221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5314,11 +5344,10 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837712757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 649625956}
+  m_Children: []
   m_Father: {fileID: 46573623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6199,6 +6228,24 @@ MonoBehaviour:
   isOpen: 0
   openAnimation: {fileID: 7400000, guid: 7e12aa6a68c1b654f980d954cb199995, type: 2}
   closeAnimation: {fileID: 7400000, guid: 3b90b436f42f5a54c927493780878d24, type: 2}
+  onOpenFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  onCloseFinish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1787325079}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!4 &966707582 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9074594807982636234, guid: 15745f8b70e5d524183539fa272d90a3,
@@ -7047,10 +7094,10 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 649625955}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 649625961}
+        m_TargetAssemblyTypeName: Popup, Assembly-CSharp
+        m_MethodName: Show
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11064,6 +11111,12 @@ MonoBehaviour:
   isOpen: 0
   openAnimation: {fileID: 7400000, guid: 1c0298b90b75f8e429d4db5850a29fea, type: 2}
   closeAnimation: {fileID: 7400000, guid: 8bd23ef036569ef42ac8569c0eb6e7d7, type: 2}
+  onOpenFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  onCloseFinish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &1701000006
 Animator:
   serializedVersion: 5
@@ -11222,6 +11275,12 @@ MonoBehaviour:
   isOpen: 0
   openAnimation: {fileID: 7400000, guid: dc607b9f7c8c81f43a99e866551b36dc, type: 2}
   closeAnimation: {fileID: 0}
+  onOpenFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  onCloseFinish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1722152982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12718,21 +12777,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1787325079}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 966707579}
         m_TargetAssemblyTypeName: Openable, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: SlamClose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12740,7 +12787,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 966707578}
         m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
@@ -12752,7 +12799,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1001 &1867563372
 PrefabInstance:
@@ -14686,6 +14733,12 @@ MonoBehaviour:
   isOpen: 0
   openAnimation: {fileID: 7400000, guid: 7e12aa6a68c1b654f980d954cb199995, type: 2}
   closeAnimation: {fileID: 7400000, guid: 3b90b436f42f5a54c927493780878d24, type: 2}
+  onOpenFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  onCloseFinish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &2104773223
 BoxCollider:
   m_ObjectHideFlags: 0

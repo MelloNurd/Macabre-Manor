@@ -39,7 +39,7 @@ public class Interactable : MonoBehaviour
         if (isDisabled) displayNormalCrosshair = true;
     }
 
-    public void OnInteract() {
+    public void Interact() {
         if (requiresItem) {
             if (player.heldObject != requiredItem) {
                 onInteractFail?.Invoke();
@@ -57,14 +57,14 @@ public class Interactable : MonoBehaviour
         onInteract?.Invoke();
     }
 
-    public void OnEnable() {
+    public void OnEnableInteraction() {
         onEnable?.Invoke();
     }
 
     public void EnableInteraction() {
         isDisabled = false;
         EnableHandCrosshair();
-        OnEnable();
+        OnEnableInteraction();
     }
 
     public void DisableInteraction() {
