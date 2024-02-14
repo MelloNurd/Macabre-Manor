@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private MeshRenderer handMR;
     private MeshFilter handMF;
 
+    public GameObject torch;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
         handMR = handObj.GetComponent<MeshRenderer>(); // don't like this but it's better for performance
         handMF = handObj.GetComponent<MeshFilter>();   //
         handObj.SetActive(false);
+
+        torch = transform.GetChild(3).gameObject;
     }
 
     // Update is called once per frame
@@ -47,6 +51,14 @@ public class Player : MonoBehaviour
                 component2.Interact();
             }
         }
+    }
+
+    public void DisableTorch() {
+        torch.SetActive(false);
+    }
+
+    public void EnableTorch() {
+        torch.SetActive(true);
     }
 
     public void DisableMove()
