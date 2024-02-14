@@ -4,25 +4,16 @@ using UnityEngine;
 
 public class FireKey : MonoBehaviour
 {
-    [SerializeField] GameObject fire;
     [SerializeField] GameObject hint;
-    Openable script;
-    // Start is called before the first frame update
-    void Start()
-    {
-        script = fire.GetComponent<Openable>();
+
+    public void ShowHint() {
+        hint.SetActive(true);
+        StartCoroutine(HintWait(2f));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (script.open == false)
-        {
-  
-        }
-        else
-        {
-            gameObject.tag = "Holdable";
-        }
+    IEnumerator HintWait(float time) {
+        yield return new WaitForSeconds(time);
+        hint.SetActive(false);
+        Debug.Log(hint.name + " deactivated");
     }
 }
