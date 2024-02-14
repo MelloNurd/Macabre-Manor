@@ -1601,6 +1601,7 @@ MonoBehaviour:
   lookRange: 2
   heldObject: {fileID: 0}
   handObj: {fileID: 0}
+  torch: {fileID: 0}
 --- !u!1001 &213573340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11077,6 +11078,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portcullis_Wood
       objectReference: {fileID: 0}
+    - target: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12015,7 +12021,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwitchSecret
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7473857038966424086, guid: e574f658d3fabcc43bdbe89b4425b18b, type: 3}
+    - {fileID: 2028094108624113459, guid: e574f658d3fabcc43bdbe89b4425b18b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -12023,6 +12031,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1831295348}
+    - targetCorrespondingSourceObject: {fileID: 8673199257911219284, guid: e574f658d3fabcc43bdbe89b4425b18b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1831295349}
   m_SourcePrefab: {fileID: 100100000, guid: e574f658d3fabcc43bdbe89b4425b18b, type: 3}
 --- !u!4 &1831295347 stripped
 Transform:
@@ -12069,6 +12081,27 @@ MonoBehaviour:
   onEnable:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &1831295349
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875184633}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.56, y: 0.37, z: 0.47}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1834178640
 PrefabInstance:
   m_ObjectHideFlags: 0
