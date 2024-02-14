@@ -7,7 +7,7 @@ using UnityEngine.Experimental.Rendering;
 public class Openable : MonoBehaviour
 {
     Animator animator;
-    public bool open = false;
+    public bool isOpen = false;
 
     float slamSpeed = 4f;
 
@@ -22,20 +22,20 @@ public class Openable : MonoBehaviour
 
     public void ToggleOpen() {
         if (!isMoving) {
-            if (open) Close();
+            if (isOpen) Close();
             else Open();
         }
     }
 
     public void Open() {
-        open = true;
+        isOpen = true;
         animator.Play(openAnimation.name);
         isMoving = true;
         StartCoroutine(AnimationEnd(openAnimation.length));
     }
 
     public void Close() {
-        open = false;
+        isOpen = false;
         animator.Play(closeAnimation.name);
         isMoving = true;
         StartCoroutine(AnimationEnd(closeAnimation.length));
