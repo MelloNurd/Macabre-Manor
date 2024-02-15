@@ -1246,7 +1246,7 @@ PrefabInstance:
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
@@ -1267,7 +1267,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 744763295}
+      objectReference: {fileID: 1114666185}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -1302,6 +1302,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.Collider, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
+        type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
@@ -7137,7 +7142,7 @@ PrefabInstance:
     - target: {fileID: 1050632825632315676, guid: 113a04b44464ee141bd913e9283f2f5e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.250535
+      value: 5.344
       objectReference: {fileID: 0}
     - target: {fileID: 1050632825632315676, guid: 113a04b44464ee141bd913e9283f2f5e,
         type: 3}
@@ -7221,7 +7226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshair: 0
+  crosshair: 1
   isDisabled: 0
   requiresItem: 0
   requiresItemOnlyOnce: 1
@@ -7265,10 +7270,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.27065828, y: 0.11251259, z: 0.5487318}
-  m_Center: {x: -0.0153687, y: 0.057629466, z: 0.0064717396}
+  m_Size: {x: 0.56748056, y: 0.46930712, z: 0.8369046}
+  m_Center: {x: -0.07634926, y: 0.23602673, z: -0.004530505}
 --- !u!114 &1114666189
 MonoBehaviour:
   m_ObjectHideFlags: 0
