@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
     private Player player;
+
+    private List<Requirements> requirements = new List<Requirements>();
 
     [Header("Interactable Settings")][Space(5)]
     [Tooltip("Enabling this will use the \"Basic\" crosshair instead of the hand")]
@@ -21,9 +25,9 @@ public class Interactable : MonoBehaviour
     [Tooltip("Whether or not this interactable requires an item to interact with it.")]
     public bool requiresItem = false;
     [Tooltip("Whether or not this interactable only requires the required item for its first interaction.")]
-    public bool requiresItemOnlyOnce = true;
+    public bool requiresItemOnlyOnce = false;
     [Tooltip("Whether or not this interactable deletes the required item used to interact with it.")]
-    public bool deletesItem = true;
+    public bool deletesItem = false;
     [Tooltip("The item required to interact with this interactable.")]
     public GameObject requiredItem = null;
 
@@ -31,6 +35,10 @@ public class Interactable : MonoBehaviour
     public UnityEvent onInteractFail;
     public UnityEvent onInteract;
     public UnityEvent onEnable;
+
+    private void Awake() {
+        requirements = GetComponents<Requirements>().ToList();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -46,15 +54,22 @@ public class Interactable : MonoBehaviour
                 return;
             }
             if (requiresItemOnlyOnce) requiresItem = false;
-            if (deletesItem) player.heldObject.GetComponent<Pickupable>().RemoveItem();
+            else if (deletesItem) player.heldObject.GetComponent<Pickupable>().RemoveItem();
             //if (disaplyLockCrosshair) disaplyLockCrosshair = false;
         }
-        else if (isDisabled) {
+        if (isDisabled || (requirements.Count > 0 && !MeetsRequirements())) {
             onInteractFail?.Invoke();
             return;
         }
 
         onInteract?.Invoke();
+    }
+
+    public bool MeetsRequirements() {
+        if (requirements.Any(x => !x.CheckReq())) {
+            return false;
+        }
+        return true;
     }
 
     public void OnEnableInteraction() {
@@ -78,5 +93,8 @@ public class Interactable : MonoBehaviour
     public void DisableHandCrosshair() {
         displayNormalCrosshair = true;
     }
+}
 
+public abstract class Requirements : MonoBehaviour {
+    public virtual bool CheckReq() { return true; }
 }

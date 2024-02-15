@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
 
     public GameObject heldObject; // Gameobject in the world
     public GameObject handObj; // Gameobject that is visible in hand
-    private MeshRenderer handMR;
-    private MeshFilter handMF;
+    public Vector3 handPos;
+    public Quaternion handRot;
 
     public GameObject torch;
 
@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
         controller = GetComponent<FPSController>(); // Gets player's FPS controller
         heldObject = null;
         handObj = transform.GetChild(2).gameObject;
-        handMR = handObj.GetComponent<MeshRenderer>(); // don't like this but it's better for performance
-        handMF = handObj.GetComponent<MeshFilter>();   //
         handObj.SetActive(false);
+        handPos = handObj.transform.localPosition;
+        handRot = handObj.transform.localRotation;
 
         torch = transform.GetChild(3).gameObject;
     }
@@ -72,21 +72,23 @@ public class Player : MonoBehaviour
     }
 
     public void CopyHeldItemToHand() {
-        handObj.SetActive(true);
-        handObj.transform.localScale = heldObject.transform.localScale;
-        handMF.mesh = heldObject.GetComponent<MeshFilter>().mesh;
-        handMR.materials = heldObject.GetComponent<MeshRenderer>().materials;
+        if(handObj != null) Destroy(handObj);
+        handObj = Instantiate(heldObject, transform.position + handPos, transform.rotation * handRot, transform);
+
+        MeshFilter handMF = handObj.GetComponent<MeshFilter>();   //
+        handMF.mesh = heldObject.GetComponent<Pickupable>().modelToHold;
     }
 
     public void ClearHand() {
-        handObj.SetActive(false);
+        if (handObj != null) Destroy(handObj);
+        handObj = null;
     }
 
     /// <summary>
     /// Function which is used to test if user has pressed their interaction buttons/keys
     /// </summary>
     /// <returns>True or false, if any of the inputs in the function return true.</returns>
-    public bool Interact() { 
+    public bool Interact() {
         // MouseButton 0 is left click
         return (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)); 
     }

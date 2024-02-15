@@ -8,7 +8,9 @@ public class Popup : MonoBehaviour
 
     Player player;
 
-    public UnityEvent onShowFail, onShow, onHide;
+    public GameObject popupImage;
+
+    public UnityEvent onShow, onHide;
 
     public bool isShown = false;
 
@@ -16,27 +18,34 @@ public class Popup : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
-        gameObject.SetActive(false);
+        popupImage.SetActive(false);
+        if (popupImage == null) Debug.LogError("No popup image set for: " + this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isShown && player.Interact()) Hide();
+        //if (isShown && player.Interact()) Hide();
+    }
+
+    public void ShowHide() {
+        if (isShown) Hide();
+        else Show();
     }
 
     public void Show()
     {
-        gameObject.SetActive(true);
-        player.DisableMove();
+        popupImage.SetActive(true);
         isShown = true;
         onShow?.Invoke();
+        player.DisableMove();
     }
 
     public void Hide()
     {
-        gameObject.SetActive(false);
-        player.EnableMove();
+        popupImage.SetActive(false);
+        isShown = false;
         onHide?.Invoke();
+        player.EnableMove();
     }
 }
