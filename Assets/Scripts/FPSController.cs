@@ -20,6 +20,7 @@ public class FPSController : MonoBehaviour
     float rotationX = 0;
 
     public bool canMove = true;
+    public bool isMoving;
 
     CharacterController controller;
 
@@ -41,6 +42,8 @@ public class FPSController : MonoBehaviour
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         float curSpeedX = Input.GetAxisRaw("Vertical");
         float curSpeedY = Input.GetAxisRaw("Horizontal");
+
+        isMoving = curSpeedX != 0 || curSpeedY != 0;
 
         moveDirection = canMove ? (forward * curSpeedX) + (right * curSpeedY) + Vector3.down : Vector3.down;
 

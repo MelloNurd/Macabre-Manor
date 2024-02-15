@@ -41,7 +41,20 @@ public class Player : MonoBehaviour
         GameObject obj = ObjectAimedAt();
 
         if(obj != null && obj.TryGetComponent(out Interactable component)) {
-            crosshair.sprite = component.displayNormalCrosshair ? basicCrosshair : handCrosshair;
+            switch(component.crosshair) {
+                case crosshairOnHover.basic:
+                    crosshair.sprite = basicCrosshair;
+                    break;
+                case crosshairOnHover.hand:
+                    crosshair.sprite = handCrosshair;
+                    break;
+                case crosshairOnHover.locked:
+                    crosshair.sprite = lockCrosshair;
+                    break;
+                default:
+                    crosshair.sprite = basicCrosshair;
+                    break;
+            }
         }
         else crosshair.sprite = basicCrosshair;
 
@@ -73,15 +86,40 @@ public class Player : MonoBehaviour
 
     public void CopyHeldItemToHand() {
         if(handObj != null) Destroy(handObj);
-        handObj = Instantiate(heldObject, transform.position + handPos, transform.rotation * handRot, transform);
-
-        MeshFilter handMF = handObj.GetComponent<MeshFilter>();   //
-        handMF.mesh = heldObject.GetComponent<Pickupable>().modelToHold;
+        handObj = Instantiate(heldObject, transform.position + (transform.forward + transform.right)/2, transform.rotation, transform);
+        handObj.SetActive(true);
+        handObj.GetComponent<MeshFilter>().mesh = heldObject.GetComponent<Pickupable>().modelToHold;
+        //ShowItemInHand();
     }
 
     public void ClearHand() {
         if (handObj != null) Destroy(handObj);
         handObj = null;
+    }
+
+    public void UpdateItemInHand() {
+        CopyHeldItemToHand();
+        ShowItemInHand();
+    }
+
+    public void ShowItemInHand() {
+        if (handObj == null) return;
+        handObj.SetActive(true);
+        foreach(Transform child in handObj.transform) {
+            child.gameObject.SetActive(true);
+        }
+        foreach (MeshRenderer childRenderer in handObj.GetComponentsInChildren(typeof(MeshRenderer))) { // Could be laggy
+            //Debug.Log(childRenderer.gameObject.name);
+            childRenderer.enabled = true;
+        }
+    }
+
+    public void HideItemInHand() {
+        if (handObj == null) return;
+        foreach (MeshRenderer childRenderer in handObj.GetComponentsInChildren(typeof(MeshRenderer))) { // Could be laggy
+            childRenderer.enabled = false;
+            childRenderer.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -90,7 +128,7 @@ public class Player : MonoBehaviour
     /// <returns>True or false, if any of the inputs in the function return true.</returns>
     public bool Interact() {
         // MouseButton 0 is left click
-        return (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)); 
+        return Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0); 
     }
 
     /// <summary>

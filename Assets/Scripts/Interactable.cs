@@ -4,6 +4,11 @@ using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.Events;
+public enum crosshairOnHover {
+    basic,
+    hand,
+    locked,
+}
 
 public class Interactable : MonoBehaviour
 {
@@ -13,9 +18,9 @@ public class Interactable : MonoBehaviour
 
     [Header("Interactable Settings")][Space(5)]
     [Tooltip("Enabling this will use the \"Basic\" crosshair instead of the hand")]
-    public bool displayNormalCrosshair = false;
+    public crosshairOnHover crosshair;
     //[Tooltip("Whether or not this interactable will display the locked crosshair when aiming at it.")]
-    //public bool disaplyLockCrosshair = false; // could use some work. would be nice if it automatically set to false if the player has the required item
+    //public bool displayLockCrosshair = false; // could use some work. would be nice if it automatically set to false if the player has the required item
 
     [Space(10)][Header("Lock Settings")][Space(5)]
     [Tooltip("Whether or not this interactable is disabled, and is to be unlocked from another interaction.")]
@@ -44,24 +49,33 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
-        if (isDisabled) displayNormalCrosshair = true;
+        //if (isDisabled) displayNormalCrosshair = true;
     }
 
     public void Interact() {
-        if (requiresItem) {
+        if (isDisabled) {
+            onInteractFail?.Invoke();
+            Debug.Log("Failed interacting with " + this);
+            return;
+        }
+        else if (requiresItem) {
             if (player.heldObject != requiredItem) {
                 onInteractFail?.Invoke();
+                Debug.Log("Failed interacting with " + this);
                 return;
             }
             if (requiresItemOnlyOnce) requiresItem = false;
-            else if (deletesItem) player.heldObject.GetComponent<Pickupable>().RemoveItem();
-            //if (disaplyLockCrosshair) disaplyLockCrosshair = false;
+            if (deletesItem) player.heldObject.GetComponent<Pickupable>().RemoveItem();
+            //if (displayLockCrosshair) displayLockCrosshair = false;
         }
-        if (isDisabled || (requirements.Count > 0 && !MeetsRequirements())) {
+
+        if (requirements.Count > 0 && !MeetsRequirements()) {
             onInteractFail?.Invoke();
+            Debug.Log("Failed interacting with " + this);
             return;
         }
 
+        Debug.Log("Successfully interacted with " + this);
         onInteract?.Invoke();
     }
 
@@ -73,12 +87,12 @@ public class Interactable : MonoBehaviour
     }
 
     public void OnEnableInteraction() {
+        Debug.Log("Enabled Interaction on " + this);
         onEnable?.Invoke();
     }
 
     public void EnableInteraction() {
         isDisabled = false;
-        EnableHandCrosshair();
         OnEnableInteraction();
     }
 
@@ -86,12 +100,16 @@ public class Interactable : MonoBehaviour
         isDisabled = true;
     }
 
-    public void EnableHandCrosshair() {
-        displayNormalCrosshair = false;
+    public void EnableBasicCrosshair() {
+        crosshair = crosshairOnHover.basic;
     }
 
-    public void DisableHandCrosshair() {
-        displayNormalCrosshair = true;
+    public void EnableHandCrosshair() {
+        crosshair = crosshairOnHover.hand;
+    }
+
+    public void EnableLockCrosshair() {
+        crosshair = crosshairOnHover.locked;
     }
 }
 

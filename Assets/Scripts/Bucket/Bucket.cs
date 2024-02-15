@@ -4,26 +4,42 @@ using UnityEngine;
 
 public class Bucket : MonoBehaviour {
 
-    private bool isFull;
+    public bool isFull;
 
     public bool startFull = false;
 
     public GameObject water;
 
+    Player player;
+
     private void Start() {
+        player = FindAnyObjectByType<Player>();
+
         water = transform.GetChild(0).gameObject;
-        if (startFull) Fill();
-        else Empty();
+        if (gameObject != player.handObj) {
+            if (startFull) Fill();
+            else Empty();
+        }
+    }
+
+    public void WaterFix() {
+        water.SetActive(isFull);
     }
 
     public void Fill() {
         isFull = true;
-        water.SetActive(true);
+        if (gameObject == player.heldObject) {
+            player.ShowItemInHand();
+        }
+        else water.SetActive(true);
     }
 
     public void Empty() {
         isFull = false;
-        water.SetActive(false);
+        if (gameObject == player.heldObject) {
+            player.handObj?.GetComponent<Bucket>()?.water?.SetActive(false);
+        }
+        else water.SetActive(false);
     }
 
     public bool IsFull() {

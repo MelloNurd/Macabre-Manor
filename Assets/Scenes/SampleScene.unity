@@ -1225,8 +1225,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
+      propertyPath: crosshair
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
+        type: 3}
       propertyPath: isDisabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
@@ -1236,17 +1241,17 @@ PrefabInstance:
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
       propertyPath: displayNormalCrosshair
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
@@ -1257,7 +1262,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 701074765}
+      objectReference: {fileID: 744763295}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -1281,7 +1286,7 @@ PrefabInstance:
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: EnableHandCrosshair
+      value: set_enabled
       objectReference: {fileID: 0}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
@@ -1291,7 +1296,7 @@ PrefabInstance:
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Interactable, Assembly-CSharp
+      value: UnityEngine.Collider, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5770626334621530859, guid: 944bff624466e4242a3377fba75ddaf3,
         type: 3}
@@ -1514,6 +1519,7 @@ MonoBehaviour:
   lookSpeed: 2
   lookXLimit: 85
   canMove: 1
+  isMoving: 0
 --- !u!143 &191056887
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1549,7 +1555,7 @@ Transform:
   m_GameObject: {fileID: 191056885}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000043213362}
-  m_LocalPosition: {x: 0, y: 1.422, z: 0}
+  m_LocalPosition: {x: 0, y: 0.716, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1578,6 +1584,8 @@ MonoBehaviour:
   lookRange: 2
   heldObject: {fileID: 0}
   handObj: {fileID: 0}
+  handPos: {x: 0, y: 0, z: 0}
+  handRot: {x: 0, y: 0, z: 0, w: 0}
   torch: {fileID: 0}
 --- !u!1001 &213573340
 PrefabInstance:
@@ -2334,7 +2342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 0
+  crosshair: 2
   isDisabled: 0
   requiresItem: 1
   requiresItemOnlyOnce: 1
@@ -2957,6 +2965,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Holdable
       objectReference: {fileID: 0}
+    - target: {fileID: 2457273537969178838, guid: fbac80f280a03844bbdc56acff09ba24,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2994,7 +3007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 0
+  crosshair: 1
   isDisabled: 0
   requiresItem: 0
   requiresItemOnlyOnce: 0
@@ -3037,6 +3050,36 @@ MonoBehaviour:
   swapsItem: 0
   modelToHold: {fileID: 28963710335737629, guid: 1b73a1dd76adf8c47b44e5557a53568f,
     type: 3}
+  onPickup:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 309512471}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: EnableHandCrosshair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPutback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 309512471}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: EnableLockCrosshair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &409016623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3754544204705893260, guid: 6ed2c478f82171c4083dfd49cea2ac11,
@@ -4460,7 +4503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 1
+  crosshair: 0
   isDisabled: 0
   requiresItem: 1
   requiresItemOnlyOnce: 1
@@ -4475,6 +4518,18 @@ MonoBehaviour:
       - m_Target: {fileID: 966707578}
         m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
         m_MethodName: EnableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 966707578}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: EnableHandCrosshair
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6259,7 +6314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 0
+  crosshair: 0
   isDisabled: 1
   requiresItem: 0
   requiresItemOnlyOnce: 1
@@ -7166,7 +7221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 0
+  crosshair: 0
   isDisabled: 0
   requiresItem: 0
   requiresItemOnlyOnce: 1
@@ -7229,7 +7284,19 @@ MonoBehaviour:
   popupImage: {fileID: 649625955}
   onShow:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 701074765}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: EnableHandCrosshair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHide:
     m_PersistentCalls:
       m_Calls: []
@@ -9068,7 +9135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 0
+  crosshair: 0
   isDisabled: 0
   requiresItem: 0
   requiresItemOnlyOnce: 1
@@ -9111,6 +9178,24 @@ MonoBehaviour:
   swapsItem: 0
   modelToHold: {fileID: -944563635335726766, guid: c92f800f4ab0055479becfd4aa479194,
     type: 3}
+  onPickup:
+    m_PersistentCalls:
+      m_Calls: []
+  onPutback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1320365848}
+        m_TargetAssemblyTypeName: Bucket, Assembly-CSharp
+        m_MethodName: WaterFix
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1320365848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9123,6 +9208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939270f14ba003d49b08366dc59a4c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFull: 0
   startFull: 0
   water: {fileID: 0}
 --- !u!1001 &1320931219
@@ -9456,7 +9542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 0
+  crosshair: 1
   isDisabled: 1
   requiresItem: 0
   requiresItemOnlyOnce: 1
@@ -9477,7 +9563,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 744763294}
+      - m_Target: {fileID: 1676292894}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: EnableHandCrosshair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1320365843}
         m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
         m_MethodName: EnableHandCrosshair
         m_Mode: 1
@@ -9521,7 +9619,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPickedUp: 0
   swapsItem: 0
-  modelToHold: {fileID: 0}
+  modelToHold: {fileID: 4300000, guid: ba63f90d8844c4f4995e182266e20c23, type: 3}
+  onPickup:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 744763294}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: EnableHandCrosshair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPutback:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1367508229
 GameObject:
   m_ObjectHideFlags: 0
@@ -10302,7 +10418,7 @@ PrefabInstance:
     - target: {fileID: 5905313355104743899, guid: 9ebd52a346641ab469fe9220a7c27ff8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.709301
+      value: -3.699301
       objectReference: {fileID: 0}
     - target: {fileID: 5905313355104743899, guid: 9ebd52a346641ab469fe9220a7c27ff8,
         type: 3}
@@ -10312,7 +10428,7 @@ PrefabInstance:
     - target: {fileID: 5905313355104743899, guid: 9ebd52a346641ab469fe9220a7c27ff8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.8583145
+      value: -8.868315
       objectReference: {fileID: 0}
     - target: {fileID: 5905313355104743899, guid: 9ebd52a346641ab469fe9220a7c27ff8,
         type: 3}
@@ -10357,7 +10473,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 94110038171852450, guid: 9ebd52a346641ab469fe9220a7c27ff8, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5905313355104743899, guid: 9ebd52a346641ab469fe9220a7c27ff8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1924992581}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5905313355104841211, guid: 9ebd52a346641ab469fe9220a7c27ff8,
         type: 3}
@@ -11146,7 +11266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 1
+  crosshair: 0
   isDisabled: 0
   requiresItem: 1
   requiresItemOnlyOnce: 0
@@ -11580,7 +11700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 0
+  crosshair: 0
   isDisabled: 0
   requiresItem: 1
   requiresItemOnlyOnce: 1
@@ -12361,7 +12481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 0
+  crosshair: 0
   isDisabled: 0
   requiresItem: 0
   requiresItemOnlyOnce: 1
@@ -13928,6 +14048,89 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1924992580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1924992581}
+  - component: {fileID: 1924992583}
+  - component: {fileID: 1924992582}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1924992581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924992580}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.141, z: 0}
+  m_LocalScale: {x: 0.66059, y: 0.15546325, z: 0.66059}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1676292889}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1924992582
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924992580}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1f2b1814c70234341902ee3c39df2231, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1924992583
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924992580}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1933798350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2254754913457302998, guid: bd271741385672b478a33a0d372490ea,
@@ -15228,7 +15431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc5139ff56713c46895b7dc9ec53eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayNormalCrosshair: 0
+  crosshair: 0
   isDisabled: 0
   requiresItem: 0
   requiresItemOnlyOnce: 1
