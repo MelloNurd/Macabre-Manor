@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -27,12 +28,12 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<FPSController>(); // Gets player's FPS controller
         heldObject = null;
-        handObj = transform.GetChild(2).gameObject;
+        handObj = transform.GetChild(3).gameObject;
         handObj.SetActive(false);
         handPos = handObj.transform.localPosition;
         handRot = handObj.transform.localRotation;
 
-        torch = transform.GetChild(3).gameObject;
+        torch = transform.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
@@ -84,12 +85,12 @@ public class Player : MonoBehaviour
         controller.canMove = true;
     }
 
-    public void CopyHeldItemToHand() {
+    public void CopyHeldItemToHand(bool forceShow = false) {
         if(handObj != null) Destroy(handObj);
         handObj = Instantiate(heldObject, transform.position + (transform.forward + transform.right)/2, transform.rotation, transform);
         handObj.SetActive(true);
-        handObj.GetComponent<MeshFilter>().mesh = heldObject.GetComponent<Pickupable>().modelToHold;
-        //ShowItemInHand();
+        //handObj.GetComponent<MeshFilter>().mesh = heldObject.GetComponent<Pickupable>().modelToHold;
+        if(forceShow) ShowItemInHand();
     }
 
     public void ClearHand() {
@@ -98,7 +99,12 @@ public class Player : MonoBehaviour
     }
 
     public void UpdateItemInHand() {
-        CopyHeldItemToHand();
+        if (handObj == null) return;
+
+        handObj.GetComponent<MeshFilter>().mesh = heldObject.GetComponent<MeshFilter>().sharedMesh;
+        Material[] mats = heldObject.GetComponent<MeshRenderer>().sharedMaterials;
+        handObj.GetComponent<MeshRenderer>().materials = mats;
+
         ShowItemInHand();
     }
 
@@ -139,7 +145,7 @@ public class Player : MonoBehaviour
     {
         // Raycasts from the playerCams position, in the direction the camera is looking, with a max distance of lookRange.
         // The RaycastHit object is returned from the Raycast, and the GameObject of the hit is returned.
-        if (Physics.Raycast(controller.playerCam.transform.position, controller.playerCam.transform.forward, out var hit, lookRange))
+        if (Physics.Raycast(controller.playerCam.transform.position, controller.playerCam.transform.forward, out var hit, lookRange, ~LayerMask.GetMask("Player")))
         {
             Debug.DrawRay(controller.playerCam.transform.position, hit.point);
             return hit.collider.gameObject;

@@ -8,11 +8,12 @@ TagManager:
   - Lock
   - Openable
   - Hint
+  - PermanentLight
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Pickupable

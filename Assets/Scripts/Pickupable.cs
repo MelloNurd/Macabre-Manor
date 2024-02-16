@@ -9,7 +9,7 @@ public class Pickupable : MonoBehaviour
 
     public bool isPickedUp;
 
-    public bool swapsItem;
+    public bool swapsItem = true;
 
     public Mesh modelToHold;
 
@@ -34,7 +34,7 @@ public class Pickupable : MonoBehaviour
             PutItemBack();
         }
         else if(swapsItem) {
-            PutItemBack();
+            player.heldObject.GetComponent<Pickupable>().PutItemBack();
             MakeItemHeld(gameObject);
         }
     }

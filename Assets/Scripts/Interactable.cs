@@ -18,9 +18,7 @@ public class Interactable : MonoBehaviour
 
     [Header("Interactable Settings")][Space(5)]
     [Tooltip("Enabling this will use the \"Basic\" crosshair instead of the hand")]
-    public crosshairOnHover crosshair;
-    //[Tooltip("Whether or not this interactable will display the locked crosshair when aiming at it.")]
-    //public bool displayLockCrosshair = false; // could use some work. would be nice if it automatically set to false if the player has the required item
+    public crosshairOnHover crosshair = crosshairOnHover.hand;
 
     [Space(10)][Header("Lock Settings")][Space(5)]
     [Tooltip("Whether or not this interactable is disabled, and is to be unlocked from another interaction.")]
@@ -49,7 +47,6 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
-        //if (isDisabled) displayNormalCrosshair = true;
     }
 
     public void Interact() {
@@ -58,7 +55,14 @@ public class Interactable : MonoBehaviour
             Debug.Log("Failed interacting with " + this);
             return;
         }
-        else if (requiresItem) {
+
+        if (requirements.Count > 0 && !MeetsRequirements()) {
+            onInteractFail?.Invoke();
+            Debug.Log("Failed interacting with " + this);
+            return;
+        }
+
+        if (requiresItem) {
             if (player.heldObject != requiredItem) {
                 onInteractFail?.Invoke();
                 Debug.Log("Failed interacting with " + this);
@@ -66,13 +70,6 @@ public class Interactable : MonoBehaviour
             }
             if (requiresItemOnlyOnce) requiresItem = false;
             if (deletesItem) player.heldObject.GetComponent<Pickupable>().RemoveItem();
-            //if (displayLockCrosshair) displayLockCrosshair = false;
-        }
-
-        if (requirements.Count > 0 && !MeetsRequirements()) {
-            onInteractFail?.Invoke();
-            Debug.Log("Failed interacting with " + this);
-            return;
         }
 
         Debug.Log("Successfully interacted with " + this);

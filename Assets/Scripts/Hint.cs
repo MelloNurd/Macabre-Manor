@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireKey : MonoBehaviour
+public class Hint : MonoBehaviour
 {
     [SerializeField] GameObject hint;
 
