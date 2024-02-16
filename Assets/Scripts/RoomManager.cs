@@ -26,7 +26,7 @@ public class RoomManager : MonoBehaviour {
     }
 
      public IEnumerator DisableDelay() {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(20f);
         onDisableLights?.Invoke();
         foreach (Light light in GetComponentsInChildren<Light>()) {
             if(light.gameObject.tag != "PermanentLight") light.enabled = false;
