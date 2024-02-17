@@ -41567,11 +41567,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b04fb20f408324294bab0af0350b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: d1ad23e06c3908142a8ed3102dd69cba, type: 3}
+  closeSound: {fileID: 8300000, guid: d1ad23e06c3908142a8ed3102dd69cba, type: 3}
   isOpen: 0
   openAnimation: {fileID: 7400000, guid: 97a4d465af9c85e42bc992be4a95e24d, type: 2}
-  closeAnimation: {fileID: 0}
+  closeAnimation: {fileID: 7400000, guid: 475134bbdcd1a3648a1df7690d6e4365, type: 2}
   onOpenFinish:
     m_PersistentCalls:
       m_Calls:
