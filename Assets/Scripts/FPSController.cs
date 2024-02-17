@@ -11,6 +11,8 @@ public class FPSController : MonoBehaviour
 {
 
     public Camera playerCam;
+    [SerializeField] GameObject cameraPivot;
+    Vector3 camStartPos;
 
     public float walkSpeed = 2.5f;
     public float runSpeed = 5f;
@@ -24,6 +26,7 @@ public class FPSController : MonoBehaviour
 
     public bool canMove = true;
     public bool isMoving;
+    bool isRunning;
 
     public AudioClip[] footsteps;
 
@@ -39,6 +42,7 @@ public class FPSController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        camStartPos = cameraPivot.transform.localPosition;
     }
 
     // Update is called once per frame
@@ -48,7 +52,7 @@ public class FPSController : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        isRunning = Input.GetKey(KeyCode.LeftShift);
         float moveSpeed = isRunning ? runSpeed : walkSpeed;
         float footStepDelay = isRunning ? 0.4f : 0.7f;
 
@@ -56,11 +60,15 @@ public class FPSController : MonoBehaviour
         float curSpeedY = Input.GetAxisRaw("Horizontal");
 
         isMoving = curSpeedX != 0 || curSpeedY != 0;
-        if (isMoving && playFootstep) StartCoroutine(PlayFootstepClip(footStepDelay));
 
         moveDirection = canMove ? (forward * curSpeedX) + (right * curSpeedY) + Vector3.down : Vector3.down;
 
         controller.Move(moveDirection.normalized * Time.deltaTime * moveSpeed);
+        if (canMove && isMoving) {
+            if(playFootstep) StartCoroutine(PlayFootstepClip(footStepDelay));
+            StartHeadBob();
+        }
+        StopHeadBob();
 
         // Camera Movement
         if(canMove) {
@@ -69,6 +77,24 @@ public class FPSController : MonoBehaviour
             playerCam.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+    }
+
+    float Amount = 0.002f;
+    float Frequency = 10.0f;
+    float Smooth = 10.0f;
+
+    private Vector3 StartHeadBob() {
+        Vector3 pos = Vector3.zero;
+        pos.y += Mathf.Sin(Time.time * Frequency) * Amount;
+        pos.x += Mathf.Cos(Time.time * Frequency / 2f) * Amount / 1.2f;
+        cameraPivot.transform.localPosition += pos * (isRunning ? 1.8f : 1f);
+
+        return pos;
+    }
+
+    private void StopHeadBob() {
+        if (cameraPivot.transform.localPosition == camStartPos) return;
+        cameraPivot.transform.localPosition = Vector3.Lerp(cameraPivot.transform.localPosition, camStartPos, Time.deltaTime);
     }
 
     IEnumerator PlayFootstepClip(float speed) {

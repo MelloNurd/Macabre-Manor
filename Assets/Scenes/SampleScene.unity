@@ -2537,8 +2537,8 @@ Transform:
   m_GameObject: {fileID: 117493081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7313, y: 0.7313, z: 0.7313}
+  m_LocalPosition: {x: 0, y: 0.168, z: 0}
+  m_LocalScale: {x: 0.7313, y: 0.8993527, z: 0.7313}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 191056888}
@@ -3765,6 +3765,7 @@ GameObject:
   - component: {fileID: 191056886}
   - component: {fileID: 191056890}
   - component: {fileID: 191056891}
+  - component: {fileID: 191056892}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -3785,6 +3786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 330585545}
+  cameraPivot: {fileID: 681272560}
   walkSpeed: 3.5
   runSpeed: 7
   lookSpeed: 2
@@ -3838,7 +3840,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 330585546}
+  - {fileID: 681272561}
   - {fileID: 117493082}
   - {fileID: 1367508230}
   - {fileID: 456824790}
@@ -3875,7 +3877,8 @@ AudioSource:
   m_GameObject: {fileID: 191056885}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: b5c66b2309cbe244f9173f7e564b09d7,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.3
@@ -3922,7 +3925,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3962,6 +3965,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!164 &191056892
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191056885}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: 0
+  m_RoomHF: 0
+  m_DecayTime: 1
+  m_DecayHFRatio: 0.5
+  m_ReflectionsLevel: -10000
+  m_ReverbLevel: 0
+  m_ReverbDelay: 0.04
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 27
 --- !u!4 &196423073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3454277780500519919, guid: 7234c83608121694ebb0c6175d854ed0,
@@ -6461,8 +6487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b04fb20f408324294bab0af0350b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: af5d726a48ea4674685a69014ee6d1ef, type: 3}
+  closeSound: {fileID: 8300000, guid: ff1df29262fcfb84f9906a180edc6c0f, type: 3}
   isOpen: 0
   openAnimation: {fileID: 7400000, guid: 7e12aa6a68c1b654f980d954cb199995, type: 2}
   closeAnimation: {fileID: 7400000, guid: 3b90b436f42f5a54c927493780878d24, type: 2}
@@ -7224,11 +7250,11 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.694, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 191056888}
+  m_Father: {fileID: 681272561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -12828,6 +12854,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9f980ee3a12ab49af49ee894ebd89a, type: 3}
+--- !u!1 &681272560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 681272561}
+  m_Layer: 3
+  m_Name: CameraPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &681272561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681272560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.694, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 330585546}
+  m_Father: {fileID: 191056888}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &681584888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13895,6 +13953,22 @@ MonoBehaviour:
   - source: {fileID: 0}
     clip: {fileID: 8300000, guid: 73918e4297ab47e4cb5ac8029683d173, type: 3}
     name: TavernMusic
+    volume: 0.2
+    pitch: 1
+    delay: 0
+    loop: 1
+    playOnAwake: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: af5d726a48ea4674685a69014ee6d1ef, type: 3}
+    name: DoorOpen
+    volume: 0.2
+    pitch: 1
+    delay: 0
+    loop: 1
+    playOnAwake: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 9bd516749ceae174db9461931805cc19, type: 3}
+    name: DoorClose
     volume: 0.2
     pitch: 1
     delay: 0
