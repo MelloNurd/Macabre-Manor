@@ -94,7 +94,7 @@ public class FPSController : MonoBehaviour
 
     private void StopHeadBob() {
         if (cameraPivot.transform.localPosition == camStartPos) return;
-        cameraPivot.transform.localPosition = Vector3.Lerp(cameraPivot.transform.localPosition, camStartPos, Time.deltaTime);
+        cameraPivot.transform.localPosition = Vector3.Lerp(cameraPivot.transform.localPosition, camStartPos, Time.deltaTime/2);
     }
 
     IEnumerator PlayFootstepClip(float speed) {

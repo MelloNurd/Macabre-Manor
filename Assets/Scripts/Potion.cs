@@ -25,6 +25,8 @@ public class Potion : MonoBehaviour
     public PotionColor color;
     public int fillHeight;
 
+    SoundManager soundManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class Potion : MonoBehaviour
         mats[1] = mr.sharedMaterial;
         mr.materials = mats;
         player = FindAnyObjectByType<Player>();
+        soundManager = FindAnyObjectByType<SoundManager>();
     }
 
     // Update is called once per frame
@@ -49,6 +52,7 @@ public class Potion : MonoBehaviour
 
     public void IncreaseLiquidLevel() {
         if (gameObject != player.heldObject) return;
+        soundManager.Play("Water");
         if(ColorIndex == (int)color) {
             if (fillHeight < 2) fillHeight++;
             //else fillHeight = 0;

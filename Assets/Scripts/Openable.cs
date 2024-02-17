@@ -22,11 +22,15 @@ public class Openable : MonoBehaviour
     [Space(10)]
     public UnityEvent onOpenFinish, onCloseFinish;
 
+    [Range(0f, 1f)]
+    public float volume = 1f;
+
     void Start()
     {
         animator = this.transform.GetComponent<Animator>();
         audioSource = this.transform.GetComponent<AudioSource>();
         if(audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.volume = volume;
         audioSource.loop = false;
         audioSource.playOnAwake = false;
     }
