@@ -50,7 +50,7 @@ public class Openable : MonoBehaviour
             audioSource.clip = openSound;
             audioSource.Play();
         }
-        StartCoroutine(AnimationEnd(openAnimation.length, true));
+        StartCoroutine(AnimationEnd(openAnimation.length, false));
     }
 
     public void Close() {
@@ -61,7 +61,7 @@ public class Openable : MonoBehaviour
             audioSource.clip = closeSound;
             audioSource.Play();
         }
-        StartCoroutine(AnimationEnd(closeAnimation.length, false));
+        StartCoroutine(AnimationEnd(closeAnimation.length, true));
     }
 
     public void SlamClose() {

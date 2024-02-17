@@ -98,7 +98,6 @@ public class FPSController : MonoBehaviour
     }
 
     IEnumerator PlayFootstepClip(float speed) {
-        Debug.Log("test");
         playFootstep = false;
         audioSource.clip = footsteps[UnityEngine.Random.Range(0, footsteps.Length)];
         audioSource.Play();
