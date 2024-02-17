@@ -5,13 +5,16 @@ using UnityEngine.Events;
 
 public class RoomManager : MonoBehaviour {
 
+    private Color brightLighting = new Color(0.29f, 0.15f, 0.03f);
+    private Color darkLighting = Color.black;
+
     bool lightsOn = true;
 
     public UnityEvent onDisableLights;
 
     // Start is called before the first frame update
-    void Start() {
-
+    void Awake() {
+        RenderSettings.ambientLight = brightLighting;
     }
 
     // Update is called once per frame
@@ -27,6 +30,7 @@ public class RoomManager : MonoBehaviour {
 
      public IEnumerator DisableDelay() {
         yield return new WaitForSeconds(20f);
+        RenderSettings.ambientLight = darkLighting;
         onDisableLights?.Invoke();
         foreach (Light light in GetComponentsInChildren<Light>()) {
             if(light.gameObject.tag != "PermanentLight") light.enabled = false;

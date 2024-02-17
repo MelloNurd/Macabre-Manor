@@ -11,6 +11,8 @@ public class Pickupable : MonoBehaviour
 
     public bool swapsItem = true;
 
+    public bool holdBackwards = false;
+
     public Mesh modelToHold;
 
     private MeshRenderer meshRenderer;
@@ -43,6 +45,9 @@ public class Pickupable : MonoBehaviour
         foreach (MeshRenderer childRenderer in gameObject.GetComponentsInChildren(typeof(MeshRenderer))) { // Could be laggy
             childRenderer.enabled = true;
             if(childRenderer.gameObject != gameObject) childRenderer.gameObject.SetActive(true);
+            if (childRenderer.gameObject.TryGetComponent(out SpriteRenderer sprite)) {
+                childRenderer.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -50,12 +55,16 @@ public class Pickupable : MonoBehaviour
         foreach (MeshRenderer childRenderer in obj.GetComponentsInChildren(typeof(MeshRenderer))) { // Could be laggy
             childRenderer.enabled = false;
             if (childRenderer.gameObject != gameObject) childRenderer.gameObject.SetActive(false);
+            if(childRenderer.gameObject.TryGetComponent(out SpriteRenderer sprite)) {
+                childRenderer.gameObject.SetActive(false);
+            }
         }
     }
 
     public void MakeItemHeld(GameObject obj) {
         player.heldObject = obj;
         player.CopyHeldItemToHand();
+        if (holdBackwards) player.handObj.transform.Rotate(0, 180, 0);
         isPickedUp = true;
 
         onPickup?.Invoke();

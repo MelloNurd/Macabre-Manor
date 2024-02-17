@@ -7,6 +7,9 @@ using UnityEngine.Experimental.Rendering;
 
 public class Openable : MonoBehaviour
 {
+    public AudioClip openSound, closeSound;
+    private AudioSource audioSource;
+
     Animator animator;
     public bool isOpen = false;
 
@@ -22,6 +25,10 @@ public class Openable : MonoBehaviour
     void Start()
     {
         animator = this.transform.GetComponent<Animator>();
+        audioSource = this.transform.GetComponent<AudioSource>();
+        if(audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.loop = false;
+        audioSource.playOnAwake = false;
     }
 
     public void ToggleOpen() {
@@ -35,6 +42,10 @@ public class Openable : MonoBehaviour
         isOpen = true;
         animator.Play(openAnimation.name);
         isPlaying = true;
+        if (openSound != null) {
+            audioSource.clip = openSound;
+            audioSource.Play();
+        }
         StartCoroutine(AnimationEnd(openAnimation.length, true));
     }
 
@@ -42,6 +53,10 @@ public class Openable : MonoBehaviour
         isOpen = false;
         animator.Play(closeAnimation.name);
         isPlaying = true;
+        if (closeSound != null) {
+            audioSource.clip = closeSound;
+            audioSource.Play();
+        }
         StartCoroutine(AnimationEnd(closeAnimation.length, false));
     }
 
