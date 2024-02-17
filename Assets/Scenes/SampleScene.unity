@@ -3708,6 +3708,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ivy_Branch (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4601402560071702403, guid: c5bbeb82695369241958e411b793cd47,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6514,6 +6519,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 173733318}
     m_Modifications:
+    - target: {fileID: 6482677549230959089, guid: dd46835ba98bdda46807dfc0f3f9c889,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     - target: {fileID: 6482677549232728849, guid: dd46835ba98bdda46807dfc0f3f9c889,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16735,6 +16745,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ivy_Branch (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4601402560071702403, guid: c5bbeb82695369241958e411b793cd47,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20297,6 +20312,14 @@ MonoBehaviour:
   - source: {fileID: 0}
     clip: {fileID: 8300000, guid: 74765a27cdb521848a38bca81b19670f, type: 3}
     name: Click
+    volume: 1
+    pitch: 1
+    delay: 0
+    loop: 0
+    playOnAwake: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: d1ad23e06c3908142a8ed3102dd69cba, type: 3}
+    name: Chains
     volume: 1
     pitch: 1
     delay: 0
@@ -30087,6 +30110,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 173733318}
     m_Modifications:
+    - target: {fileID: 6482677549230959089, guid: dd46835ba98bdda46807dfc0f3f9c889,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     - target: {fileID: 6482677549232728849, guid: dd46835ba98bdda46807dfc0f3f9c889,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30930,6 +30958,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2088910689}
     m_Modifications:
+    - target: {fileID: 6482677549230959089, guid: dd46835ba98bdda46807dfc0f3f9c889,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     - target: {fileID: 6482677549232728849, guid: dd46835ba98bdda46807dfc0f3f9c889,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -35354,6 +35387,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 173733318}
     m_Modifications:
+    - target: {fileID: 6482677549230959089, guid: dd46835ba98bdda46807dfc0f3f9c889,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     - target: {fileID: 6482677549232728849, guid: dd46835ba98bdda46807dfc0f3f9c889,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -41527,6 +41565,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ivy_Branch (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4601402560071702403, guid: c5bbeb82695369241958e411b793cd47,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -42586,6 +42629,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 173733318}
     m_Modifications:
+    - target: {fileID: 6482677549230959089, guid: dd46835ba98bdda46807dfc0f3f9c889,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     - target: {fileID: 6482677549232728849, guid: dd46835ba98bdda46807dfc0f3f9c889,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45874,6 +45922,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2088910689}
     m_Modifications:
+    - target: {fileID: 6482677549230959089, guid: dd46835ba98bdda46807dfc0f3f9c889,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     - target: {fileID: 6482677549232728849, guid: dd46835ba98bdda46807dfc0f3f9c889,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -46884,8 +46937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b04fb20f408324294bab0af0350b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: e950ab3951c2d1d4ba80f07a05e0cd14, type: 3}
+  closeSound: {fileID: 8300000, guid: e950ab3951c2d1d4ba80f07a05e0cd14, type: 3}
   isOpen: 0
   openAnimation: {fileID: 7400000, guid: 1c0298b90b75f8e429d4db5850a29fea, type: 2}
   closeAnimation: {fileID: 7400000, guid: 8bd23ef036569ef42ac8569c0eb6e7d7, type: 2}
@@ -48577,6 +48630,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ivy_Branch
       objectReference: {fileID: 0}
+    - target: {fileID: 4601402560071702403, guid: c5bbeb82695369241958e411b793cd47,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50869,18 +50927,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 713930849}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Gate
           m_BoolArgument: 0
         m_CallState: 2
   onEnable:
@@ -54583,6 +54629,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ivy_Branch
       objectReference: {fileID: 0}
+    - target: {fileID: 4601402560071702403, guid: c5bbeb82695369241958e411b793cd47,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7476e95f061b94649a7e1ad54e0a7dad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
