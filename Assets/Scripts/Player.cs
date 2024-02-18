@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
         // The RaycastHit object is returned from the Raycast, and the GameObject of the hit is returned.
         if (Physics.Raycast(controller.playerCam.transform.position, controller.playerCam.transform.forward, out var hit, lookRange, ~LayerMask.GetMask("Player")))
         {
-            Debug.DrawRay(controller.playerCam.transform.position, hit.point);
+            Debug.DrawLine(controller.playerCam.transform.position, hit.point, UnityEngine.Color.white);
             return hit.collider.gameObject;
         }
         return null;
