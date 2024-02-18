@@ -1,14 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.UI.ScrollRect;
 
 public class Player : MonoBehaviour
 {
@@ -28,11 +21,18 @@ public class Player : MonoBehaviour
 
     Monster monster;
 
-    bool isDying;
+    public bool isDying;
     bool deathCheck;
 
     SoundManager soundManager;
     public Image blackScreen;
+
+    public UnityEvent onRespawn;
+
+    Vector3 respawnPos = new Vector3(-12.5f, -10f, 43.2f);
+    Vector3 respawnRot = new Vector3(0, 270, 0);
+
+    Coroutine lastRan;
 
     // Start is called before the first frame update
     void Start()
@@ -49,10 +49,6 @@ public class Player : MonoBehaviour
         torch = transform.GetChild(2).gameObject;
     }
 
-    float currentTime = 0f;
-    float timeToMove = 0.1f;  //the time taken to rotate.
-    bool isRotating = false; // set this bool true where you wish (such as on input)
-
     // Update is called once per frame
     void Update()
     {
@@ -63,7 +59,8 @@ public class Player : MonoBehaviour
             if(lookRot.eulerAngles.magnitude - controller.playerCam.transform.rotation.eulerAngles.magnitude < 2f && deathCheck) {
                 deathCheck = false;
                 monster.PlayKillAnimation();
-                StartCoroutine(OnDeath());
+                lastRan = StartCoroutine(OnDeath());
+                StartCoroutine(Respawn(2));
             }
         }
 
@@ -187,7 +184,7 @@ public class Player : MonoBehaviour
     }
 
     public void PlayDeathAnimation() {
-        controller.playerCam.transform.localPosition += Vector3.up*-0.06f;
+        controller.playerCam.transform.localPosition += Vector3.up * -0.06f;
         controller.canMove = false;
         DisableTorch();
         deathCheck = true;
@@ -200,5 +197,21 @@ public class Player : MonoBehaviour
         soundManager.Stop("Scream1");
         blackScreen.enabled = true;
         soundManager.Play("BoneSnap");
+    }
+    // Test
+    IEnumerator Respawn(float time) {
+        yield return new WaitForSeconds(time);
+        StopCoroutine(lastRan);
+        deathCheck = false;
+        isDying = false;
+        torch.SetActive(true);
+        blackScreen.enabled = false;
+        transform.position = respawnPos;
+        Debug.Log(respawnPos);
+        gameObject.transform.rotation = Quaternion.Euler(respawnRot);
+        controller.canMove = true;
+        monster.canMove = true;
+        onRespawn?.Invoke();
+        StopAllCoroutines();
     }
 }

@@ -6128,8 +6128,6 @@ GameObject:
   - component: {fileID: 191056890}
   - component: {fileID: 191056891}
   - component: {fileID: 191056892}
-  - component: {fileID: 191056893}
-  - component: {fileID: 191056894}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -6199,8 +6197,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191056885}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.96592593, z: -0, w: 0.25881863}
-  m_LocalPosition: {x: 0, y: 0.45, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -12.518, y: -9.992, z: 43.199}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6209,7 +6207,7 @@ Transform:
   - {fileID: 1367508230}
   - {fileID: 456824790}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -150, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!114 &191056890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6232,7 +6230,23 @@ MonoBehaviour:
   handPos: {x: 0, y: 0, z: 0}
   handRot: {x: 0, y: 0, z: 0, w: 0}
   torch: {fileID: 0}
+  isDying: 0
   blackScreen: {fileID: 160000991}
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 353289848}
+        m_TargetAssemblyTypeName: Openable, Assembly-CSharp
+        m_MethodName: SlamClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &191056891
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6353,41 +6367,6 @@ AudioReverbFilter:
   m_LFReference: 250
   m_ReflectionsDelay: 0
   m_ReverbPreset: 27
---- !u!165 &191056893
-AudioHighPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191056885}
-  m_Enabled: 0
-  m_CutoffFrequency: 5000
-  m_HighpassResonanceQ: 1
---- !u!169 &191056894
-AudioLowPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191056885}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_LowpassResonanceQ: 1
-  lowpassLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.22727273
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &196423073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3454277780500519919, guid: 7234c83608121694ebb0c6175d854ed0,
@@ -41094,6 +41073,102 @@ MonoBehaviour:
   onPutback:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1366755218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1366755221}
+  - component: {fileID: 1366755220}
+  - component: {fileID: 1366755219}
+  - component: {fileID: 1366755222}
+  m_Layer: 0
+  m_Name: Final Transition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1366755219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366755218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe3bfbdac1d2bc4aa397f3499a16262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomUnload: {fileID: 2102883673}
+  roomLoad: {fileID: 1346389379}
+  onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1366755222}
+        m_TargetAssemblyTypeName: Manager, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Bedroom
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &1366755220
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366755218}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.836427, y: 4.225134, z: 4.101554}
+  m_Center: {x: 0.5231142, y: -9.584806, z: 47.876293}
+--- !u!4 &1366755221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366755218}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.7071066}
+  m_LocalPosition: {x: -47.68, y: -4.25, z: 42.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1366755222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366755218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76a829e656465547867125e2199a579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1367058436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44322,8 +44397,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1454614150}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0, z: -16.6}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.20001605, y: 0, z: -16.600018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47348,6 +47423,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door_Basement_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923930166926854605, guid: 16efa409f7809d6499a20bf293c5df05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -58129,7 +58209,7 @@ PrefabInstance:
     - target: {fileID: 1757795375353834394, guid: d7b381934053044429b9da8e2a1144e4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.12099458
+      value: -0.12902255
       objectReference: {fileID: 0}
     - target: {fileID: 1757795375353834394, guid: d7b381934053044429b9da8e2a1144e4,
         type: 3}
@@ -58139,7 +58219,7 @@ PrefabInstance:
     - target: {fileID: 1757795375353834394, guid: d7b381934053044429b9da8e2a1144e4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.28901
+      value: -7.039007
       objectReference: {fileID: 0}
     - target: {fileID: 1757795375353834394, guid: d7b381934053044429b9da8e2a1144e4,
         type: 3}
@@ -69281,3 +69361,4 @@ SceneRoots:
   - {fileID: 1346389380}
   - {fileID: 42282323}
   - {fileID: 1277262263}
+  - {fileID: 1366755221}

@@ -28,6 +28,8 @@ public class FPSController : MonoBehaviour
     public bool isMoving;
     bool isRunning;
 
+    Player playerRef;
+
     public AudioClip[] footsteps;
 
     CharacterController controller;
@@ -38,6 +40,7 @@ public class FPSController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerRef = GetComponent<Player>();
         controller = GetComponent<CharacterController>();
         audioSource = GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -63,7 +66,7 @@ public class FPSController : MonoBehaviour
 
         moveDirection = canMove ? (forward * curSpeedX) + (right * curSpeedY) + Vector3.down : Vector3.down;
 
-        controller.Move(moveDirection.normalized * Time.deltaTime * moveSpeed);
+        if(!playerRef.isDying) controller.Move(moveDirection.normalized * Time.deltaTime * moveSpeed);
         if (canMove && isMoving) {
             if(playFootstep) StartCoroutine(PlayFootstepClip(footStepDelay));
             StartHeadBob();

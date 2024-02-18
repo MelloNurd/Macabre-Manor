@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour
 
     public Animator animator;
 
-    Light light;
+    new Light light;
 
     public int lookAngle = 80;
 
@@ -32,23 +32,22 @@ public class Monster : MonoBehaviour
 
     private void Start() {
         player = FindAnyObjectByType<Player>();
+        agent = GetComponent<NavMeshAgent>();
         light = GetComponentInChildren<Light>();
+        positions = new Vector3[patrolPointsObj.transform.childCount];
+        int index = 0;
+        foreach (Transform t in patrolPointsObj.GetComponentsInChildren<Transform>()) {
+            if (t == patrolPointsObj.transform) continue;
+            positions[index++] = t.position;
+        }
         light.enabled = false;
+        agent.SetDestination(positions[Random.Range(0, positions.Length)]);
     }
 
     // Start is called before the first frame update
     void OnEnable()
     {
-        agent = GetComponent<NavMeshAgent>();
-
-        positions = new Vector3[patrolPointsObj.transform.childCount];
-        int index = 0;
-        foreach(Transform t in patrolPointsObj.GetComponentsInChildren<Transform>()) {
-            if(t == patrolPointsObj.transform) continue;
-            positions[index++] = t.position;
-        }
-
-        agent.SetDestination(positions[Random.Range(0, positions.Length)]);
+        
     }
 
     // Update is called once per frame
@@ -59,9 +58,9 @@ public class Monster : MonoBehaviour
         }
         else if (agent.isStopped) agent.isStopped = false;
 
-        if (transform.position == agent.destination && !isChasingPlayer) { // Patrolling
+        
+        if (Vector3.Distance(transform.position, agent.destination) < 0.5f && !isChasingPlayer) { // Patrolling
             SetRandomDestination();
-            return;
         }
 
         if (CheckForPlayer()) {
