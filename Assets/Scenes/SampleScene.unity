@@ -5769,7 +5769,7 @@ Transform:
   m_GameObject: {fileID: 191056885}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071071, z: -0, w: 0.7071065}
-  m_LocalPosition: {x: -56.76, y: -14.534, z: 43.17}
+  m_LocalPosition: {x: 13.990002, y: -0.2840004, z: 4.169998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19807,8 +19807,8 @@ MonoBehaviour:
   openSound: {fileID: 8300000, guid: 62b9be34b41453244a13f3559d357b22, type: 3}
   closeSound: {fileID: 8300000, guid: 2182d4b274fe5364fae79377ac36f2c9, type: 3}
   isOpen: 0
-  openAnimation: {fileID: 7400000, guid: 9815eed196dd64549a7011c8ce1daf5a, type: 2}
-  closeAnimation: {fileID: 7400000, guid: 3b90b436f42f5a54c927493780878d24, type: 2}
+  openAnimation: {fileID: 7400000, guid: 1bca3f0f3fe27014b97d8f4290fba09f, type: 2}
+  closeAnimation: {fileID: 7400000, guid: 19f406557d3cae04785935431f15288e, type: 2}
   onOpenFinish:
     m_PersistentCalls:
       m_Calls: []
@@ -34317,6 +34317,7 @@ GameObject:
   - component: {fileID: 1205643250}
   - component: {fileID: 1205643249}
   - component: {fileID: 1205643248}
+  - component: {fileID: 1205643253}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -34339,7 +34340,7 @@ MonoBehaviour:
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   isOpen: 0
-  openAnimation: {fileID: 0}
+  openAnimation: {fileID: 7400000, guid: f8c39714ca7cc9346bf508338c9bcccc, type: 2}
   closeAnimation: {fileID: 0}
   onOpenFinish:
     m_PersistentCalls:
@@ -34429,12 +34430,33 @@ Transform:
   m_GameObject: {fileID: 1205643247}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5451269, y: 3.6384678, z: 6.7048216}
+  m_LocalPosition: {x: -0.5451269, y: 3.6384678, z: 6.704822}
   m_LocalScale: {x: 0.18321955, y: 0.031264, z: 0.05418989}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1745584976}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!95 &1205643253
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205643247}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87a302d98cb6f1b46a1544a4d7566374, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1207089112
 GameObject:
   m_ObjectHideFlags: 0
@@ -49485,7 +49507,7 @@ PrefabInstance:
     - target: {fileID: 2642311626253648332, guid: ba93fc15ee14dbf45b36696cb946115f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3658175
+      value: 3.365818
       objectReference: {fileID: 0}
     - target: {fileID: 2642311626253648332, guid: ba93fc15ee14dbf45b36696cb946115f,
         type: 3}
@@ -65215,10 +65237,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1205643247}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1205643248}
+        m_TargetAssemblyTypeName: Openable, Assembly-CSharp
+        m_MethodName: ToggleOpen
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
