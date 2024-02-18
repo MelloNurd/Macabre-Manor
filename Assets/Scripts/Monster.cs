@@ -13,6 +13,8 @@ public class Monster : MonoBehaviour
 
     public Animator animator;
 
+    Light light;
+
     public int lookAngle = 80;
 
     public GameObject patrolPointsObj;
@@ -30,6 +32,8 @@ public class Monster : MonoBehaviour
 
     private void Start() {
         player = FindAnyObjectByType<Player>();
+        light = GetComponentInChildren<Light>();
+        light.enabled = false;
     }
 
     // Start is called before the first frame update
@@ -109,6 +113,7 @@ public class Monster : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        light.enabled = true;
         animator.Play("Idle");
         gameObject.transform.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z));
         canMove = false;

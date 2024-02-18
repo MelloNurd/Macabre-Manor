@@ -29,10 +29,15 @@ public class Player : MonoBehaviour
     Monster monster;
 
     bool isDying;
+    bool deathCheck;
+
+    SoundManager soundManager;
+    public Image blackScreen;
 
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = FindObjectOfType<SoundManager>();
         monster = FindAnyObjectByType<Monster>();
         controller = GetComponent<FPSController>(); // Gets player's FPS controller
         heldObject = null;
@@ -53,11 +58,12 @@ public class Player : MonoBehaviour
     {
         if(isDying) {
             //Interpolate Rotation
-            Quaternion lookRot = Quaternion.LookRotation(monster.transform.position + Vector3.up*2f - controller.playerCam.transform.position);
+            Quaternion lookRot = Quaternion.LookRotation(monster.transform.position + Vector3.up*1.85f - controller.playerCam.transform.position);
             controller.playerCam.transform.rotation = Quaternion.Slerp(controller.playerCam.transform.rotation, lookRot, 3.5f * Time.deltaTime);
-            if(lookRot.eulerAngles.magnitude - controller.playerCam.transform.rotation.eulerAngles.magnitude < 1.5f) {
-                //isDying = false;
+            if(lookRot.eulerAngles.magnitude - controller.playerCam.transform.rotation.eulerAngles.magnitude < 2f && deathCheck) {
+                deathCheck = false;
                 monster.PlayKillAnimation();
+                StartCoroutine(OnDeath());
             }
         }
 
@@ -174,15 +180,25 @@ public class Player : MonoBehaviour
         // The RaycastHit object is returned from the Raycast, and the GameObject of the hit is returned.
         if (Physics.Raycast(controller.playerCam.transform.position, controller.playerCam.transform.forward, out var hit, lookRange, ~LayerMask.GetMask("Player")))
         {
-            Debug.DrawLine(controller.playerCam.transform.position, hit.point, UnityEngine.Color.white);
+            Debug.DrawLine(controller.playerCam.transform.position, hit.point, Color.white);
             return hit.collider.gameObject;
         }
         return null;
     }
 
     public void PlayDeathAnimation() {
+        controller.playerCam.transform.localPosition += Vector3.up*-0.06f;
         controller.canMove = false;
-
+        DisableTorch();
+        deathCheck = true;
         isDying = true;
+    }
+
+    IEnumerator OnDeath() {
+        soundManager.Play("Scream1");
+        yield return new WaitForSeconds(1f);
+        soundManager.Stop("Scream1");
+        blackScreen.enabled = true;
+        soundManager.Play("BoneSnap");
     }
 }
