@@ -33,6 +33,7 @@ public class Openable : MonoBehaviour
         audioSource.volume = volume;
         audioSource.loop = false;
         audioSource.playOnAwake = false;
+        if (isOpen) Open();
     }
 
     public void ToggleOpen() {
