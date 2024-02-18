@@ -43,6 +43,8 @@ public class Monster : MonoBehaviour
     {
         if (transform.position == agent.destination) SetRandomDestination();
         Debug.Log(CheckForPlayer());
+        if (transform.position == agent.destination && !isChasingPlayer) { // Patrolling
+            SetRandomDestination();
     }
 
     public bool CheckForPlayer() {
@@ -50,6 +52,7 @@ public class Monster : MonoBehaviour
         if (Physics.Raycast(transform.position + Vector3.up / 2, direction, out var hit, 30, ~LayerMask.GetMask("Monster"))) {
             Debug.DrawLine(transform.position + Vector3.up / 2, hit.point, UnityEngine.Color.white);
             return hit.collider.gameObject == player.gameObject && Vector3.Angle(transform.forward, direction) <= lookAngle;
+            return hit.collider.gameObject == player.gameObject && Vector3.Angle(transform.forward, direction) <= lookAngle || Vector3.Distance(transform.position, player.transform.position) < 5;
         }
         return false;
     }
@@ -61,4 +64,6 @@ public class Monster : MonoBehaviour
     public void SetRandomDestination() {
         agent.SetDestination(positions[Random.Range(0, positions.Length)]);
     }
+
+    IEnumerator TryLosePlayer() {
 }
