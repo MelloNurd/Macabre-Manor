@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     [SerializeField] Image crosshair;
     [SerializeField] Sprite basicCrosshair, handCrosshair, lockCrosshair;
 
+    [SerializeField] GameObject eyelids;
+    [SerializeField] Animator animator;
+    [SerializeField] AnimationClip openEyes, closeEyes;
+
     public float lookRange = 2f;
 
     public GameObject heldObject; // Gameobject in the world
@@ -47,6 +51,10 @@ public class Player : MonoBehaviour
         handRot = handObj.transform.localRotation;
 
         torch = transform.GetChild(2).gameObject;
+
+        controller.canMove = false;
+        animator.Play(openEyes.name);
+        StartCoroutine(OpenEyes(openEyes.length));
     }
 
     // Update is called once per frame
@@ -202,5 +210,11 @@ public class Player : MonoBehaviour
     IEnumerator Respawn(float time) {
         yield return new WaitForSeconds(time);
         FindObjectOfType<Manager>().LoadScene("FinalRoom");
+    }
+
+    IEnumerator OpenEyes(float length) {
+        yield return new WaitForSeconds(length);
+        controller.canMove = true;
+        eyelids.SetActive(false);
     }
 }
