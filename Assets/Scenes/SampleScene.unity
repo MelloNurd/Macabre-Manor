@@ -34553,8 +34553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b04fb20f408324294bab0af0350b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: fe7bd9818ee54ed449f9f815c8dccd33, type: 3}
+  closeSound: {fileID: 8300000, guid: fe7bd9818ee54ed449f9f815c8dccd33, type: 3}
   isOpen: 0
   openAnimation: {fileID: 7400000, guid: f8c39714ca7cc9346bf508338c9bcccc, type: 2}
   closeAnimation: {fileID: 0}
@@ -34564,7 +34564,7 @@ MonoBehaviour:
   onCloseFinish:
     m_PersistentCalls:
       m_Calls: []
-  volume: 0
+  volume: 1
 --- !u!64 &1205643249
 MeshCollider:
   m_ObjectHideFlags: 0

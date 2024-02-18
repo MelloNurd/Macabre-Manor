@@ -85,7 +85,7 @@ public class Monster : MonoBehaviour
 
     IEnumerator TryLosePlayer() {
         isTryingLoss = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         if(!CheckForPlayer() && isTryingLoss) {
             SetRandomDestination();
             isChasingPlayer = false;
