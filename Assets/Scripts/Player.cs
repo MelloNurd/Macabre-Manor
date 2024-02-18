@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UI.ScrollRect;
 
 public class Player : MonoBehaviour
 {
@@ -23,9 +26,14 @@ public class Player : MonoBehaviour
 
     public GameObject torch;
 
+    Monster monster;
+
+    bool isDying;
+
     // Start is called before the first frame update
     void Start()
     {
+        monster = FindAnyObjectByType<Monster>();
         controller = GetComponent<FPSController>(); // Gets player's FPS controller
         heldObject = null;
         handObj = transform.GetChild(3).gameObject;
@@ -36,9 +44,28 @@ public class Player : MonoBehaviour
         torch = transform.GetChild(2).gameObject;
     }
 
+    float currentTime = 0f;
+    float timeToMove = 0.1f;  //the time taken to rotate.
+    bool isRotating = false; // set this bool true where you wish (such as on input)
+
     // Update is called once per frame
     void Update()
     {
+        if(isDying) {
+            //Interpolate Rotation
+            Quaternion lookRot = Quaternion.LookRotation(monster.transform.position + Vector3.up*2f - controller.playerCam.transform.position);
+            controller.playerCam.transform.rotation = Quaternion.Slerp(controller.playerCam.transform.rotation, lookRot, 3.5f * Time.deltaTime);
+            if(lookRot.eulerAngles.magnitude - controller.playerCam.transform.rotation.eulerAngles.magnitude < 1.5f) {
+                //isDying = false;
+                monster.PlayKillAnimation();
+            }
+        }
+
+        //if (Input.GetKeyDown(KeyCode.R)) {
+        //    PlayDeathAnimation();
+        //    return;
+        //}
+
         GameObject obj = ObjectAimedAt();
 
         if(obj != null && obj.TryGetComponent(out Interactable component)) {
@@ -151,5 +178,11 @@ public class Player : MonoBehaviour
             return hit.collider.gameObject;
         }
         return null;
+    }
+
+    public void PlayDeathAnimation() {
+        controller.canMove = false;
+
+        isDying = true;
     }
 }

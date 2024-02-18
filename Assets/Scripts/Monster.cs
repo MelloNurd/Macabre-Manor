@@ -9,14 +9,19 @@ public class Monster : MonoBehaviour
 {
     NavMeshAgent agent;
 
+    public GameObject headObj;
+
+    public Animator animator;
+
     public int lookAngle = 80;
 
     public GameObject patrolPointsObj;
 
     [SerializeField] private Vector3[] positions;
 
-    public bool canSeePlayer;
-    public bool isChasingPlayer;
+    public bool canMove = true;
+
+    bool isChasingPlayer;
     bool isTryingLoss;
 
     Player player;
@@ -45,6 +50,11 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canMove) {
+            agent.isStopped = true;
+        }
+        else if (agent.isStopped) agent.isStopped = false;
+
         if (transform.position == agent.destination && !isChasingPlayer) { // Patrolling
             SetRandomDestination();
             return;
@@ -83,6 +93,11 @@ public class Monster : MonoBehaviour
         agent.SetDestination(positions[Random.Range(0, positions.Length)]);
     }
 
+    public void PlayKillAnimation() {
+        canMove = false;
+        animator.Play("MonsterGrab");
+    }
+
     IEnumerator TryLosePlayer() {
         isTryingLoss = true;
         yield return new WaitForSeconds(4);
@@ -91,5 +106,14 @@ public class Monster : MonoBehaviour
             isChasingPlayer = false;
         }
         isTryingLoss = false;
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        animator.Play("Idle");
+        gameObject.transform.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z));
+        canMove = false;
+        agent.speed = 0;
+        agent.isStopped = true;
+        if(other.gameObject.layer == 3) player.PlayDeathAnimation(); // 3 is "Player" layer
     }
 }
