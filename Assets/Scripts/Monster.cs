@@ -13,6 +13,8 @@ public class Monster : MonoBehaviour
 
     public Animator animator;
 
+    SoundManager soundManager;
+
     new Light light;
 
     public int lookAngle = 80;
@@ -31,6 +33,7 @@ public class Monster : MonoBehaviour
     Coroutine coroutineReference;
 
     private void Start() {
+        soundManager = FindObjectOfType<SoundManager>();
         player = FindAnyObjectByType<Player>();
         agent = GetComponent<NavMeshAgent>();
         light = GetComponentInChildren<Light>();
@@ -58,13 +61,13 @@ public class Monster : MonoBehaviour
         }
         else if (agent.isStopped) agent.isStopped = false;
 
-        
         if (Vector3.Distance(transform.position, agent.destination) < 0.5f && !isChasingPlayer) { // Patrolling
             SetRandomDestination();
         }
 
         if (CheckForPlayer()) {
             isChasingPlayer = true;
+            soundManager.Play("HorrorMusic");
             if (isTryingLoss) {
                 StopCoroutine(coroutineReference);
                 isTryingLoss = false;
@@ -107,6 +110,7 @@ public class Monster : MonoBehaviour
         if(!CheckForPlayer() && isTryingLoss) {
             SetRandomDestination();
             isChasingPlayer = false;
+            soundManager.Stop("HorrorMusic");
         }
         isTryingLoss = false;
     }

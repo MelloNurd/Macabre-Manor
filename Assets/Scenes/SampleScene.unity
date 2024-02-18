@@ -21468,6 +21468,14 @@ MonoBehaviour:
     delay: 0
     loop: 0
     playOnAwake: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4d76b62f963bd1e4ea1c1fed9eb49286, type: 3}
+    name: HorrorMusic
+    volume: 0.325
+    pitch: 1
+    delay: 0
+    loop: 1
+    playOnAwake: 0
   clipPlayOnStartForTesting: 
   isWaitingToPlay: 0
 --- !u!4 &713930850
@@ -34805,7 +34813,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1178208207}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: set_isStatic
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -59925,6 +59933,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shelf
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432622557476056704, guid: cb9bc6b96d830b64293c9fdff99b1743,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7432622557476287136, guid: cb9bc6b96d830b64293c9fdff99b1743,
         type: 3}

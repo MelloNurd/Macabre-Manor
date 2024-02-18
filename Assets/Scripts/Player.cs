@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+
         if(isDying) {
             //Interpolate Rotation
             Quaternion lookRot = Quaternion.LookRotation(monster.transform.position + Vector3.up*1.85f - controller.playerCam.transform.position);

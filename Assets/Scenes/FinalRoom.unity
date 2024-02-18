@@ -10922,6 +10922,14 @@ MonoBehaviour:
     delay: 0
     loop: 0
     playOnAwake: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4d76b62f963bd1e4ea1c1fed9eb49286, type: 3}
+    name: HorrorMusic
+    volume: 1
+    pitch: 1
+    delay: 0
+    loop: 1
+    playOnAwake: 0
   clipPlayOnStartForTesting: 
   isWaitingToPlay: 0
 --- !u!4 &713930850
