@@ -201,17 +201,6 @@ public class Player : MonoBehaviour
     // Test
     IEnumerator Respawn(float time) {
         yield return new WaitForSeconds(time);
-        StopCoroutine(lastRan);
-        deathCheck = false;
-        isDying = false;
-        torch.SetActive(true);
-        blackScreen.enabled = false;
-        transform.position = respawnPos;
-        Debug.Log(respawnPos);
-        gameObject.transform.rotation = Quaternion.Euler(respawnRot);
-        controller.canMove = true;
-        monster.canMove = true;
-        onRespawn?.Invoke();
-        StopAllCoroutines();
+        FindObjectOfType<Manager>().LoadScene("FinalRoom");
     }
 }
