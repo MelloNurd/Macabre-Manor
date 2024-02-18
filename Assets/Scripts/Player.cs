@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
                 deathCheck = false;
                 monster.PlayKillAnimation();
                 lastRan = StartCoroutine(OnDeath());
-                StartCoroutine(Respawn(2));
+                StartCoroutine(Respawn(2f));
             }
         }
 
@@ -165,6 +165,12 @@ public class Player : MonoBehaviour
             childRenderer.gameObject.SetActive(false);
         }
     }
+
+    public void ResetLookAngle() {
+        transform.eulerAngles = new Vector3(0, 270, 0);
+        controller.playerCam.transform.localEulerAngles = Vector3.zero;
+    }
+
 
     /// <summary>
     /// Function which is used to test if user has pressed their interaction buttons/keys

@@ -4,18 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class RoomManager : MonoBehaviour {
-
-    private Color brightLighting = new Color(0.29f, 0.15f, 0.03f);
-    private Color darkLighting = Color.black;
-
     bool lightsOn = true;
 
     public UnityEvent onDisableLights;
 
-    // Start is called before the first frame update
-    void Awake() {
-        RenderSettings.ambientLight = brightLighting;
-    }
+    private Color darkLighting = Color.black;
 
     // Update is called once per frame
     void Update() {
