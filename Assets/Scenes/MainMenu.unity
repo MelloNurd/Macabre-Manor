@@ -3843,6 +3843,7 @@ GameObject:
   - component: {fileID: 881206261}
   - component: {fileID: 881206264}
   - component: {fileID: 881206265}
+  - component: {fileID: 881206266}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3990,6 +3991,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &881206266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881206260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4144ce1ab8282e648928f78ab6f5c2e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &931215046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8852,7 +8865,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1959937010}
-  - component: {fileID: 1959937009}
   m_Layer: 0
   m_Name: Room1
   m_TagString: Untagged
@@ -8860,21 +8872,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1959937009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959937008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62a7343eedf31104abc512afe1c9783a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDisableLights:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &1959937010
 Transform:
   m_ObjectHideFlags: 0
